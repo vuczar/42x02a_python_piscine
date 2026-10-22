@@ -69,7 +69,7 @@ exercício, status, perguntas de defesa): [notes/MODULES.md](notes/MODULES.md).
 | Módulo | Tema | Subject | Status |
 |--------|------|---------|--------|
 | 00 | Growing Code: fundamentos | [PDF](notes/42x02.python00.en.subject.pdf) + [main.py](notes/42x02.python00.main.py) | Concluído |
-| 01 | Code Cultivation: POO | [PDF](notes/42x02.python01.en.subject.pdf) | **Em andamento** (ex3) |
+| 01 | Code Cultivation: POO | [PDF](notes/42x02.python01.en.subject.pdf) | **Em andamento** (ex0–ex3 prontos, ex4 iniciado) |
 | 02 | Garden Guardian: exceções | [PDF](notes/42x02.python02.en.subject.pdf) | Não iniciado |
 | 03 | Data Quest: coleções | [PDF](notes/42x02.python03.en.subject.pdf) | Não iniciado |
 | 04 | Data Archivist: arquivos | [PDF](notes/42x02.python04.en.subject.pdf) | Não iniciado |

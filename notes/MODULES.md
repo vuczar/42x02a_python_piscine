@@ -153,24 +153,27 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
 - [x] ex0
 - [x] ex1
 - [x] ex2
-- [ ] ex3 — feito, faltam ajustes (ver abaixo)
-- [ ] ex4
+- [x] ex3 (concluído em 2026-10-22)
+- [ ] ex4 — iniciado
 - [ ] ex5
 - [ ] ex6
 
-#### Pendências de revisão do ex3 (2026-10-21)
+#### Lições da revisão do ex3 (úteis para os próximos)
 
-1. A classe não tem `grow()`/`age()`. O subject pede que a planta fique pronta
-   para `grow()` logo depois de criada, e diz "Improve your Plant class from the
-   previous exercises". Trazer os métodos do ex2.
-2. O `show()` foi alterado para incluir `"Created: "`. O subject diz que o
-   `show()` deve ser usado **sem alteração**. Manter o formato do ex2
-   (`Rose: 25.0cm, 30 days old`) e colocar o prefixo fora dele.
-3. `__init__` sem `-> None`. O mypy 0.942 aceita, mas a regra é type hint em
-   tudo.
-4. Nomes `s_height`/`s_age`: depois de um `grow()` deixam de ser a altura
-   "inicial". Cuidado: um atributo `self.age` esconderia o método `age()`
-   (foi por isso que o ex2 usou `time`).
+- "Improve your Plant class" = **reaproveitar a classe anterior inteira** e
+  acrescentar. A primeira versão do ex3 perdeu `grow()`/`age()`.
+- O construtor só monta o objeto: **nada de `print` no `__init__`**. Quem exibe
+  é o `main`. Isso também evita o F841 (variável não usada).
+- `show()` sem alteração: o "Created: " fica fora dele
+  (`print("Created: ", end="")`).
+- **Um dado, um atributo**: houve um bug com `s_height` (que o `show` lia) e
+  `height` (que o `grow` alterava). A planta crescia, mas não aparecia.
+- O `__init__` deve deixar prontos **todos** os atributos usados pelos métodos
+  (o `growth`, com padrão `0.8`).
+- Um atributo `self.age` esconderia o método `age()`, por isso a idade usa
+  `s_age`.
+- `self.s_height` ficou guardando a altura inicial (não é usado por nenhum
+  método). Na defesa, justificar: serve para calcular o crescimento total.
 
 ### Perguntas de defesa — ex3 (com gabarito)
 
@@ -185,7 +188,9 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
 4. **Diferença entre classe e instância?** Classe é o molde (`Plant`). Instância
    é cada objeto concreto (`plant1`, `plant2`), com seus próprios valores.
 5. **E se eu chamar `Plant("Rose", 25)`?** `TypeError`: falta um argumento
-   posicional obrigatório. (Daria para usar valores padrão: `s_age: int = 0`.)
+   posicional obrigatório. E `Plant("Rose", 25, 30)` sem o `growth` funciona
+   porque ele tem valor padrão (`0.8`). Parâmetros com padrão vêm depois dos
+   obrigatórios.
 6. **Por que `25` vira `25.0cm` na saída?** Por causa do format spec `:.1f` na
    f-string, que formata como float com 1 casa decimal.
 7. **Por que passar `25` (int) funciona se o hint é `float`?** O mypy aceita
@@ -195,6 +200,13 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
    `for plant in plants: plant.show()`.
 9. **Tarefa ao vivo provável:** "faça a Rose crescer 3 dias e mostre", ou
    "adicione uma sexta planta".
+10. **Por que o "Created: " não está dentro do `show()` nem do `__init__`?** O
+    subject pede o `show()` sem alteração, e um construtor que imprime faria
+    toda criação de planta (inclusive nos ex4–ex6) gerar output sem ninguém
+    pedir.
+11. **Por que o atributo da idade não se chama `age`?** Porque `self.age = 30`
+    sobrescreveria o método `age()` naquela instância, e `rose.age()` daria
+    `TypeError: 'int' object is not callable`.
 
 ---
 
