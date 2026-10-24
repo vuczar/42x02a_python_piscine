@@ -154,7 +154,7 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
 - [x] ex1
 - [x] ex2
 - [x] ex3 (concluído em 2026-10-22)
-- [ ] ex4 — iniciado
+- [x] ex4 (concluído em 2026-10-24)
 - [ ] ex5
 - [ ] ex6
 
@@ -207,6 +207,54 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
 11. **Por que o atributo da idade não se chama `age`?** Porque `self.age = 30`
     sobrescreveria o método `age()` naquela instância, e `rose.age()` daria
     `TypeError: 'int' object is not callable`.
+
+#### Lições da revisão do ex4 (úteis para os próximos)
+
+- **Construtor que imprime de forma indireta**: o `__init__` chama os setters
+  e, na primeira versão, eles imprimiam "Height updated", que saía colado no
+  "Plant created: ". Solução adotada: o setter só imprime o **erro**, e a
+  mensagem de sucesso fica no `main`.
+- **O `main` não pode ler `_atributo` direto**: uma versão usava
+  `plant1._height` no `main`, o que quebra o encapsulamento. Fora da classe,
+  usar os getters. Dentro da classe (`show`, `grow`, `age`), usar `_height`
+  direto está certo.
+- **`get_height` ≠ `get_height()`**: sem os parênteses, a f-string imprimiu
+  `<bound method Plant.get_height of ...>`. O flake8 e o mypy **não** pegam
+  esse erro, então sempre rode o script e leia a saída.
+- O subject pede **os dois** getters. O `get_age()` tinha ficado de fora.
+- Limitação conhecida, que você decidiu manter: o `main` imprime "Height
+  updated" sem saber se o set deu certo. Se o avaliador trocar o valor por um
+  negativo, sai o erro **e** o "updated". Como resolveria: o setter devolve
+  `bool` (`-> bool`) e o `main` usa um `if`.
+- A saída mostra `25.0cm`, e o exemplo mostra `25cm`. É cosmético (o output
+  não é cobrado caractere por caractere).
+
+### Perguntas de defesa — ex4 (com gabarito)
+
+1. **O que é encapsulamento?** O objeto controla os próprios dados: quem está
+   fora lê pelos getters e altera pelos setters, que validam antes de gravar.
+   A regra ("altura não pode ser negativa") fica em um lugar só.
+2. **Por que `_height` e não `__height`?** Um underscore é a convenção
+   "protected": avisa "é interno, não mexa", mas o Python não bloqueia nada.
+   Dois underscores ativam o *name mangling* (o Python renomeia para
+   `_Plant__height`), o que dificulta o acesso inclusive pelas subclasses (vai
+   importar no ex5). O subject proíbe o mangling.
+3. **`plant1._height = -50` funciona?** Funciona. Em Python o encapsulamento é
+   por convenção e disciplina, não por imposição da linguagem.
+4. **Por que o `__init__` chama `set_height()` em vez de
+   `self._height = s_height`?** Para a validação valer também na criação. O
+   padrão (`0.0`) é atribuído antes, então o atributo existe mesmo se o valor
+   for rejeitado.
+5. **Como o valor antigo é mantido?** O setter faz `return` antes de gravar
+   quando o valor é inválido.
+6. **E se eu criar `Plant("Rose", -5, 10)`?** Sai o erro, e a planta nasce com
+   altura `0.0` (o padrão).
+7. **O que é `plant1.get_height` sem parênteses?** É o próprio método (*bound
+   method*), que não foi executado. Os `()` é que chamam o método.
+8. **Altura 0 é válida?** Sim. O subject só proíbe valores **negativos**
+   (`< 0`).
+9. **Tarefa ao vivo provável:** "atualize a altura para -5 na linha do
+   update" (ver a limitação acima), ou "proteja também o `growth`".
 
 ---
 
