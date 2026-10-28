@@ -155,8 +155,48 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
 - [x] ex2
 - [x] ex3 (concluído em 2026-10-22)
 - [x] ex4 (concluído em 2026-10-24)
-- [ ] ex5
-- [ ] ex6
+- [x] ex5 (concluído em 2026-10-28; flake8 ok, mypy ainda não verificado)
+- [ ] ex6 (em andamento: static method iniciado, com erro de sintaxe)
+
+#### Situação do ex6 (2026-10-28)
+
+`ex6/ft_garden_analytics.py` começou como cópia do ex5. Feito até agora:
+
+- `Plant.check_age()` (`@staticmethod`), chamado no `main` com 30 e 400.
+  Pendências: falta `:` no `else` (linha 52, quebra o arquivo), falta o
+  `-> ...` no tipo de retorno e "days" na mensagem. Sugestão: o static method
+  **devolver** `bool` (`age > 365`) e o `main` imprimir, em vez de imprimir
+  dentro do método.
+
+Falta (na ordem combinada):
+
+1. Class method para a planta anônima (`cls("Unknown plant", 0.0, 0)`).
+2. Classe aninhada de estatísticas (contagem de `grow`/`age`/`show`,
+   encapsulada, com função de exibição). Os contadores sobem dentro dos
+   métodos da `Plant`, e as filhas contam via `super()`.
+3. Função **fora das classes** que exibe as estatísticas de qualquer planta
+   (polimorfismo).
+4. `Tree` com contador extra de `produce_shade()`.
+5. `Seed(Flower)` com número de sementes depois de florescer, e `show()`
+   estendido.
+6. `main` seguindo o exemplo do subject (título "Garden statistics"). No
+   exemplo, 1 `grow()` faz a Rose crescer 8cm e 1 `age()` adiciona 20 dias ao
+   Sunflower: avaliar se `grow`/`age` passam a receber a quantidade.
+
+#### Lições da revisão do ex5
+
+- `super().__init__(...)` é uma **chamada**: vão valores, não `nome: tipo`. O
+  `__init__` da filha recebe a parte comum e a específica e repassa a comum.
+- Parâmetros da mãe primeiro, na mesma ordem dela.
+- Valor que sempre começa igual (`nutritional_value`) não é parâmetro: é
+  definido no `__init__`.
+- `Vegetable` recebe `growth` e repassa ao `super()` (o tomate cresce 2.1/dia).
+- Para o valor nutricional chegar a 20 em 20 dias, subindo em `grow()` **e**
+  `age()`: `+0.5` em cada, atributo `float` (`0.0`, senão o mypy reclama) e
+  `:.0f` na exibição.
+- A simulação usa um laço que **chama** os métodos (não multiplica), para que
+  altura, idade e nutrição andem juntas.
+- `bloom()` só muda o estado. Quem narra (`[asking ...]`) é o `main`.
 
 #### Lições da revisão do ex3 (úteis para os próximos)
 
