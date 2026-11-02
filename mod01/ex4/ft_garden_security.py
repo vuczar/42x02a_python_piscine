@@ -54,7 +54,7 @@ def main() -> None:
     print()
     plant1.set_height(25.0)
     print(f"Height updated: {plant1.get_height():.0f}cm")
-    plant1.set_age(31)
+    plant1.set_age(30)
     print(f"Age updated: {plant1.get_age()} days")
     print()
     plant1.set_height(-26.0)
