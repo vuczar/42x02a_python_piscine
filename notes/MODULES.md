@@ -155,33 +155,42 @@ encapsulamento → herança → static/class methods, classes aninhadas e polimo
 - [x] ex2
 - [x] ex3 (concluído em 2026-10-22)
 - [x] ex4 (concluído em 2026-10-24)
-- [x] ex5 (concluído em 2026-10-28; flake8 ok, mypy ainda não verificado)
-- [ ] ex6 (em andamento: static method iniciado, com erro de sintaxe)
+- [x] ex5 (concluído em 2026-10-28; flake8 e mypy ok)
+- [x] ex6 (concluído em 2026-11-02; flake8 e mypy ok, saída idêntica ao
+  exemplo do subject)
 
-#### Situação do ex6 (2026-10-28)
+#### Como o ex6 ficou
 
-`ex6/ft_garden_analytics.py` começou como cópia do ex5. Feito até agora:
+- `Plant._Stats`: classe aninhada com 3 contadores protegidos, `add_grow()`/
+  `add_age()`/`add_show()` e `display()`. Cada planta cria a sua no
+  `__init__` (`self._stats = Plant._Stats()`).
+- A contagem fica em `show()`/`grow()`/`age()` da `Plant`. As filhas contam
+  de graça porque chamam `super()`.
+- `grow(amount: float | None = None)` e `age(days: int = 1)`: sem argumento,
+  mantêm o comportamento antigo (`growth` / 1 dia). Com argumento, 1 chamada
+  = `grow(8.0)` ou `age(20)`, como no exemplo. O `Vegetable` repete a mesma
+  assinatura nos overrides (senão o mypy acusa: princípio de Liskov).
+- `display_stats()` é a porta pública para as estatísticas. A `Tree` tem
+  `_shade_calls` e sobrescreve `display_stats()` (`super()` + linha `shade`).
+- `Seed(Flower)`: cadeia `Plant → Flower → Seed`. Guarda `_seed_capacity` e
+  só libera `seeds` no `bloom()` sobrescrito.
+- `show_statistics(plant: Plant)`, fora das classes: polimorfismo (a linha
+  `shade` só aparece para a `Tree`, sem nenhum `if`).
+- O `Vegetable` continua no arquivo, mas saiu do `main` (o exemplo do ex6 não
+  tem vegetal).
 
-- `Plant.check_age()` (`@staticmethod`), chamado no `main` com 30 e 400.
-  Pendências: falta `:` no `else` (linha 52, quebra o arquivo), falta o
-  `-> ...` no tipo de retorno e "days" na mensagem. Sugestão: o static method
-  **devolver** `bool` (`age > 365`) e o `main` imprimir, em vez de imprimir
-  dentro do método.
+#### Lições da revisão do ex6
 
-Falta (na ordem combinada):
-
-1. Class method para a planta anônima (`cls("Unknown plant", 0.0, 0)`).
-2. Classe aninhada de estatísticas (contagem de `grow`/`age`/`show`,
-   encapsulada, com função de exibição). Os contadores sobem dentro dos
-   métodos da `Plant`, e as filhas contam via `super()`.
-3. Função **fora das classes** que exibe as estatísticas de qualquer planta
-   (polimorfismo).
-4. `Tree` com contador extra de `produce_shade()`.
-5. `Seed(Flower)` com número de sementes depois de florescer, e `show()`
-   estendido.
-6. `main` seguindo o exemplo do subject (título "Garden statistics"). No
-   exemplo, 1 `grow()` faz a Rose crescer 8cm e 1 `age()` adiciona 20 dias ao
-   Sunflower: avaliar se `grow`/`age` passam a receber a quantidade.
+- `_init_` (um underscore) não é construtor: é um método comum que ninguém
+  chama. O flake8 não pega, só aparece ao rodar (`AttributeError`).
+- Uma classe indentada dentro de outra vira **aninhada**. A `Seed` dentro da
+  `Flower` deu F821: a `Flower` ainda não existe enquanto o corpo dela é lido.
+  Aninhar só o que é parte interna (a `_Stats`), não as subclasses.
+- Um dado, um atributo (de novo): `_seeds`, `seed` e `seeds` eram três
+  atributos diferentes.
+- Ao trocar o valor usado (`amount`), conferir a linha que de fato soma.
+- Pegadinha de defesa: `Flower.anonymous()` daria `TypeError`, porque o
+  `cls(...)` passa 3 argumentos e a `Flower` exige a `color`.
 
 #### Lições da revisão do ex5
 
