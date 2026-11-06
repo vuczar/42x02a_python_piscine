@@ -360,7 +360,7 @@ Arco: capturar → lançar → distinguir tipos → criar os próprios → limpa
 
 ### Status
 
-- [x] ex0  - [ ] ex1  - [ ] ex2  - [ ] ex3  - [ ] ex4
+- [x] ex0  - [x] ex1  - [ ] ex2  - [ ] ex3  - [ ] ex4
 
 ### Perguntas de defesa (tiradas do subject)
 
