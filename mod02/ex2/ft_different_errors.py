@@ -18,11 +18,11 @@ def test_error_types() -> None:
             garden_operations(number)
             print("Operation completed successfully")
         except ValueError as e:
-            print(f"Caught Value Error: {e}")
+            print(f"Caught ValueError: {e}")
         except ZeroDivisionError as e:
             print(f"Caught ZeroDivisionError: {e}")
         except FileNotFoundError as e:
-            print(f"Caught FileNotFoundError {e}")
+            print(f"Caught FileNotFoundError: {e}")
         except TypeError as e:
             print(f"Caught TypeError: {e}")
 
