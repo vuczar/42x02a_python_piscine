@@ -360,7 +360,7 @@ Arco: capturar → lançar → distinguir tipos → criar os próprios → limpa
 
 ### Status
 
-- [x] ex0  - [x] ex1  - [x] ex2  - [x] ex3  - [ ] ex4
+- [x] ex0  - [x] ex1  - [x] ex2  - [x] ex3  - [x] ex4
 
 ### Perguntas de defesa (tiradas do subject)
 
@@ -438,7 +438,7 @@ lista é O(n). Num set/dict (hash) é O(1) em média.
 
 ### Status
 
-- [ ] ex0  - [ ] ex1  - [ ] ex2  - [ ] ex3  - [ ] ex4  - [ ] ex5  - [ ] ex6
+- [x] ex0  - [x] ex1  - [x] ex2  - [x] ex3  - [ ] ex4  - [ ] ex5  - [ ] ex6
 
 ### Perguntas de defesa (tiradas do subject)
 
