@@ -2,7 +2,10 @@
 
 Repositório com as listas (módulos) da Piscine Python da 42. Cada módulo fica em
 `modXX/` e cada exercício em `modXX/exN/`, um arquivo por exercício. Os subjects
-(PDF), os anexos e as notas dos módulos ficam em `notes/`.
+(PDF), os anexos e as notas dos módulos ficam em `notes/`. As réguas de
+avaliação da intra (scale) ficam em `notes/scales/` (há para mod02, 03, 04,
+05bis e 06bis): antes de dar um módulo por pronto, confira o código contra a
+régua, que diz exatamente o que o avaliador vai testar.
 
 **Este é o repo pessoal do aluno (GitHub), não o repo de entrega.** O aluno
 desenvolve aqui e depois copia os arquivos pedidos para os repositórios de
@@ -71,7 +74,7 @@ exercício, status, perguntas de defesa): [notes/MODULES.md](notes/MODULES.md).
 | 00 | Growing Code: fundamentos | [PDF](notes/42x02.python00.en.subject.pdf) + [main.py](notes/42x02.python00.main.py) | Concluído |
 | 01 | Code Cultivation: POO | [PDF](notes/42x02.python01.en.subject.pdf) | Concluído |
 | 02 | Garden Guardian: exceções | [PDF](notes/42x02.python02.en.subject.pdf) | Concluído |
-| 03 | Data Quest: coleções | [PDF](notes/42x02.python03.en.subject.pdf) | Em andamento |
+| 03 | Data Quest: coleções | [PDF](notes/42x02.python03.en.subject.pdf) | Concluído |
 | 04 | Data Archivist: arquivos | [PDF](notes/42x02.python04.en.subject.pdf) | Não iniciado |
 | 05bis | The Codex: venv, pacotes, imports | [PDF](notes/42x02.python05bis.en.subject.pdf) | Não iniciado |
 | 06bis | Code Nexus: ABC, polimorfismo, patterns | [PDF](notes/42x02.python06bis.en.subject.pdf) | Não iniciado |
