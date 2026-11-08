@@ -438,7 +438,7 @@ lista é O(n). Num set/dict (hash) é O(1) em média.
 
 ### Status
 
-- [x] ex0  - [x] ex1  - [x] ex2  - [x] ex3  - [ ] ex4  - [ ] ex5  - [ ] ex6
+- [x] ex0  - [x] ex1  - [x] ex2  - [x] ex3  - [x] ex4  - [ ] ex5  - [ ] ex6
 
 ### Perguntas de defesa (tiradas do subject)
 
