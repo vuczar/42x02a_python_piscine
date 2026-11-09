@@ -75,7 +75,7 @@ exercício, status, perguntas de defesa): [notes/MODULES.md](notes/MODULES.md).
 | 01 | Code Cultivation: POO | [PDF](notes/42x02.python01.en.subject.pdf) | Concluído |
 | 02 | Garden Guardian: exceções | [PDF](notes/42x02.python02.en.subject.pdf) | Concluído |
 | 03 | Data Quest: coleções | [PDF](notes/42x02.python03.en.subject.pdf) | Concluído |
-| 04 | Data Archivist: arquivos | [PDF](notes/42x02.python04.en.subject.pdf) | Não iniciado |
+| 04 | Data Archivist: arquivos | [PDF](notes/42x02.python04.en.subject.pdf) | Em andamento |
 | 05bis | The Codex: venv, pacotes, imports | [PDF](notes/42x02.python05bis.en.subject.pdf) | Não iniciado |
 | 06bis | Code Nexus: ABC, polimorfismo, patterns | [PDF](notes/42x02.python06bis.en.subject.pdf) | Não iniciado |
 | 07, 08 | — | **faltando** | — |

@@ -504,7 +504,7 @@ o erro de permissão no Mac, use `/etc/master.passwd`.
 
 ### Status
 
-- [ ] ex0  - [ ] ex1  - [ ] ex2  - [ ] ex3
+- [x] ex0  - [ ] ex1  - [ ] ex2  - [ ] ex3
 
 ### Perguntas de defesa
 
